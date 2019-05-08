@@ -1,10 +1,7 @@
 The Scraper
 
-<% @country.each do |country, index| %>
-    <% @url.each do |url| %>
-        <div>
-        <%= "https://tradingeconomics.com/#{country.name}#{url.slug}" %>
+        <div></div>
+        <%= @table_headers %>
         </div><br>
-    <% end %>
-<% end %>
+
 
