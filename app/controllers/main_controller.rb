@@ -19,12 +19,14 @@ class MainController < ApplicationController
             HTTParty.get(u)
             puts "successfully requested URI"
         end
-        parsed_pages = unparsed_pages.each do |up|
-            Nokogiri::HTML(up)
+        parsed_pages = unparsed_pages.each do |unparsed_page|
+            Nokogiri::HTML(unparsed_page)
             puts "successfully parsed pages"
         end
 
-        @table_headers = parsed_pages.css('#ctl00_ContentPlaceHolder1_ctl03_titleHeader').text
+        @table_headers = parsed_pages.each.css('#ctl00_ContentPlaceHolder1_ctl03_titleHeader').text
+
+
         indicators = parsed_pages.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition")
         indicators.each do |indicator|
             @indicator = {
@@ -37,6 +39,7 @@ class MainController < ApplicationController
                 frequency: indicator.css("td:nth-child(8)").text
             }
         end
+
     end
     
 end
