@@ -1,8 +1,11 @@
 The Scraper
-
-        <div></div>
-        <%= @table_headers %>
+<br>
+ <% @table_headers.each do |th| %>
+        <div>
+        <%= th %>
         </div><br>
+<% end %>
+
 
 
 
