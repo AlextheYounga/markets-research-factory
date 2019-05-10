@@ -8,8 +8,10 @@ class MainController < ApplicationController
         countries = Country.all
         urls = Url.all
         url_list = []
-        unparsed_pages = []
+        pages = []
         @table_headers = []
+        indicators = []
+        @actual = []
 
         countries.each do |country|
             urls.each do |url|
@@ -18,28 +20,26 @@ class MainController < ApplicationController
         end
 
         url_list.each do |u| 
-            unparsed_pages << Nokogiri::HTML(HTTParty.get(u))
+            pages << Nokogiri::HTML(HTTParty.get(u))
             puts 'page scanned and added to array'
         end
 
-        unparsed_pages.each do |unparsed_page|
-            @table_headers << unparsed_page.css('#ctl00_ContentPlaceHolder1_ctl03_titleHeader').text.strip
-            puts "header grabbed"
+        pages.each do |page|
+            @table_headers << page.css('#ctl00_ContentPlaceHolder1_ctl03_titleHeader').text.strip
+            indicators = page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition")
+            @actual << indicators.css("td:nth-child(2)").text
+            puts "header and tables grabbed"
         end
-
-        # indicators = parsed_pages.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition")
+        
         # indicators.each do |indicator|
-        #     @indicator = {
-        #         actual: indicator.css("td:nth-child(2)").text,
-        #         previous: indicator.css("td:nth-child(3)").text,
-        #         highest: indicator.css("td:nth-child(4)").text,
-        #         lowest: indicator.css("td:nth-child(5)").text,
-        #         dates: indicator.css("td:nth-child(6)").text,
-        #         unit: indicator.css("td:nth-child(7)").text,
-        #         frequency: indicator.css("td:nth-child(8)").text
-        #     }
+        #     @actual = indicator.css("td:nth-child(2)").text
+            # previous: indicator.css("td:nth-child(3)").text,
+            # highest: indicator.css("td:nth-child(4)").text,
+            # lowest: indicator.css("td:nth-child(5)").text,
+            # dates: indicator.css("td:nth-child(6)").text,
+            # unit: indicator.css("td:nth-child(7)").text,
+            # frequency: indicator.css("td:nth-child(8)").text
         # end
-
     end
     
 end
