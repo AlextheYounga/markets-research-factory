@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_014739) do
+ActiveRecord::Schema.define(version: 2019_05_13_012138) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
+    t.string "print_name"
   end
 
   create_table "urls", force: :cascade do |t|

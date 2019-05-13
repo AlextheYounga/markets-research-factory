@@ -1,17 +1,14 @@
 The Scraper
-<br>
- <% @table_headers.each do |th| %>
-        <div>
-        <%= th %>
-        </div><br>
-<% end %>
 
-<div>
-        <%= @actual.each %>
-</div>
-
-
-
-
-
-
+<table class="container">
+	<tr>
+		<th></th>
+		<th>Inflation Rate</th>
+	</tr>
+	<% @countries.zip(@actual).each do |country, actual| %>
+	<tr>
+		<td><%= country.print_name %></td>
+		<td><%= actual %></td>
+	</tr>
+	<% end %>
+</table>
