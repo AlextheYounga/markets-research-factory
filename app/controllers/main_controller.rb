@@ -9,7 +9,7 @@ class MainController < ApplicationController
         url_list = []
         pages = []
         @table_headers = []
-        @actual = []
+        @inflation = []
         num_sec = 0.5
 
         @countries.each do |country|
@@ -27,7 +27,7 @@ class MainController < ApplicationController
        
         pages.each do |page|
             # @table_headers << page.css('#ctl00_ContentPlaceHolder1_ctl03_titleHeader').text.strip
-            @actual << page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip
+            @inflation << page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip
             puts "header and tables grabbed"
         end
 

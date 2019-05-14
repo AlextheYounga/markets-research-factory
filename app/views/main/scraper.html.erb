@@ -5,10 +5,10 @@ The Scraper
 		<th></th>
 		<th>Inflation Rate</th>
 	</tr>
-	<% @countries.zip(@actual).each do |country, actual| %>
+	<% @countries.zip(@inflation).each do |country, inflation| %>
 	<tr>
 		<td><%= country.print_name %></td>
-		<td><%= actual %></td>
+		<td><%= inflation %></td>
 	</tr>
 	<% end %>
 </table>
