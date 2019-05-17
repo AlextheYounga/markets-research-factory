@@ -1,14 +1,27 @@
-The Scraper
 
 <table class="container">
-	<tr>
-		<th></th>
-		<th>Inflation Rate</th>
-	</tr>
-	<% @countries.zip(@inflation).each do |country, inflation| %>
-	<tr>
-		<td><%= country.print_name %></td>
-		<td><%= inflation %></td>
-	</tr>
-	<% end %>
-</table>
+		<tr>
+			<th></th>
+			  <th>Inflation Rate</th>
+			  <th>Corporate Tax Rate</th>
+			  <th>Interest Rate</th>
+			  <th>Unemployment Rate</th>
+			  <th>Personal Income Tax</th>
+			  <th>GDP per Capita</th>
+			  <th>Government <br>Debt to GDP</th>
+			  <th>Banks<br>Balance Sheet</th>
+			  <th>Central Bank<br>Balance Sheet</th>
+			  <th>Government<br>Budget</th>
+		</tr>
+		<% @countries.each do |country| %>
+		<tr>
+			<td><%= country.print_name %></td>
+			<% @actual.each_slice(10) do |actual| %>
+			<td><%= actual %></td>
+			<% end %>
+		</tr>
+		<% end %>
+	</table>
+
+
+

@@ -13,3 +13,114 @@
  *= require_tree .
  *= require_self
  */
+
+h1 {
+ margin: 5rem auto 1rem auto;
+ display: block;
+ text-align: center;
+}
+
+a {
+  text-decoration: none;
+  button{
+    color: #800020;
+    background-color: #fff;
+    border-color: #621b18;
+    border-radius: .25rem;
+    border-width: 1px;
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+    text-decoration: none;
+    width: 12rem; 
+
+    &:hover {
+        background-color: #3b0d0c;
+        color: #fcebea;
+    }
+  }
+}
+
+
+//Spinner
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+.wrap {
+	width: 100%;
+	position: absolute;
+	top: 50%;
+}
+.spinner-wrap {
+	margin: auto;
+	position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.spinner {
+	
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+	margin: -50px auto 0;
+	animation: spin 1s steps(12, end) infinite;
+	
+	&:first-child {
+		margin-right: 50px;
+	}
+	
+	i {
+		height: 30px;
+		width: 6px;
+		margin-left: -3px;
+		display: block;
+		transition: height 1s;
+		position: absolute;
+		left: 50%;
+		transform-origin: center 50px;
+		background: #fff;
+		box-shadow: 0 0 3px rgba(255, 255, 255, .7);
+		border-radius: 3px;
+	}
+	
+	&:nth-child(2) i {
+		height: 6px;
+	}
+	&:hover {
+		i {
+			height: 6px;		
+		}
+		
+		&:nth-child(2) i {
+			height: 30px;
+		}
+	}
+}
+
+.spinner i:nth-child(1) { opacity:.08 }
+.spinner i:nth-child(2) { transform:rotate(30deg);opacity:.167 }
+.spinner i:nth-child(3) { transform:rotate(60deg);opacity:.25 }
+.spinner i:nth-child(4) { transform:rotate(90deg);opacity:.33 }
+.spinner i:nth-child(5) { transform:rotate(120deg);opacity:.4167 }
+.spinner i:nth-child(6) { transform:rotate(150deg);opacity:.5 }
+.spinner i:nth-child(7) { transform:rotate(180deg);opacity:.583 }
+.spinner i:nth-child(8) { transform:rotate(210deg);opacity:.67 }
+.spinner i:nth-child(9) { transform:rotate(240deg);opacity:.75 }
+.spinner i:nth-child(10) { transform:rotate(270deg);opacity:.833 }
+.spinner i:nth-child(11) { transform:rotate(300deg);opacity:.9167 }
+.spinner i:nth-child(12) { transform:rotate(330deg);opacity:1 }
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}

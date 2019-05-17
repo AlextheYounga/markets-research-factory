@@ -8,10 +8,17 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+    <script>    
+    $(window).load(function() {
+        // Animate loader off screen
+        $(".spinner").fadeOut("slow");
+      });
+    </script>
   </head>
 
   <body>
     <%= yield %>
+    <%= render "layouts/loading_spinner" %>
   </body>
 </html>
 

@@ -2,6 +2,10 @@ class MainController < ApplicationController
     require 'httparty'
     require 'nokogiri'
     require 'byebug'
+    require 'enumerator'
+
+    def home
+    end
 
     def scraper
         @countries = Country.all
@@ -9,7 +13,7 @@ class MainController < ApplicationController
         url_list = []
         pages = []
         @table_headers = []
-        @inflation = []
+        @actual = []
         num_sec = 0.5
 
         @countries.each do |country|
@@ -27,7 +31,7 @@ class MainController < ApplicationController
        
         pages.each do |page|
             # @table_headers << page.css('#ctl00_ContentPlaceHolder1_ctl03_titleHeader').text.strip
-            @inflation << page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip
+            @actual << page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip
             puts "header and tables grabbed"
         end
 
