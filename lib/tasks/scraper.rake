@@ -5,14 +5,13 @@ namespace :app do
   desc "Scrape TradingEconomics for indicators"
   task :scrape => :environment do
 
-        countries = Country.all
         num_sec = 1
         
         start = Time.now
         Rake::Task['db:seed'].invoke
         puts "DB reseeded to clear database"
 
-        countries.each do |country|
+        Country.all.each do |country|
             inflation_page = Nokogiri::HTML(HTTParty.get("https://tradingeconomics.com/#{country.name}/inflation-cpi"))
             puts "got #{country.name} inflation data"
             sleep(num_sec)
@@ -43,7 +42,7 @@ namespace :app do
             budget_page = Nokogiri::HTML(HTTParty.get("https://tradingeconomics.com/#{country.name}/government-budget-value"))
 
         
-        Country.update(
+        Country.where(name: "#{country.name}").update(
             inflation: inflation_page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip,
             corporate_tax: corporate_tax_page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip,
             interest_rate: interest_rate_page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip,
