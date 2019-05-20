@@ -55,7 +55,7 @@ namespace :app do
             central_bank: central_bank_page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip,
             budget: budget_page.css("#ctl00_ContentPlaceHolder1_ctl03_PanelDefinition td:nth-child(2)").text.strip
             )
-            puts "Pages Scrapped, Indicators Saved"
+            puts "Pages Scraped, Indicators Saved"
         end
 
         finish = Time.now

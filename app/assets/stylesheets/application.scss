@@ -47,80 +47,158 @@ a {
 }
 
 
-//Spinner
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+$white: #fff;
+
+// flatUI colors
+$midnight:    #2c3e50;
+$asphalt:     #34495e;
+$bulma-black: #4a4a4a;
+$asbestos:    #7f8c8d;
+$contrete:    #95a5a6;
+$silver:      #bdc3c7;
+$clouds:      #ecf0f1;
+$emerald:     #2ecc71;
+$nephritis:   #27ae60;
+$turquoise:   #1abc9c;
+$greensea:    #16a085;
+$amethyst:    #9b59b6;
+$wisteria:    #8e44ad;
+$sunflower:   #f1c40f;
+$orange:      #f39c12;
+$carrot:      #e67e22;
+$pumpkin:     #d35400;
+$alizarin:    #e74c3c;
+$pomegranate: #c0392b;
+$river:       #3498db;
+$belize:      #2980b9;
+
+// aggie colors
+$aggieblue:        #036;
+$aggiesilver:      #a4aeb5;
+$aggieblue-dark:   #0f2439;
+$aggieblue-faded:  #2e4676;
+$aggieblue-light:  #2472b5;
+
+//bulma overrides
+$primary:             $aggieblue-dark;
+$primary-faded:       $aggieblue-faded;
+$primary-transparent: transparentize($primary, .9);
+
+//MDL box-shadows
+$shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$shadow-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+$shadow-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+$shadow-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+//testing color
+$test-color: transparentize($wisteria, .9);
+
+@mixin sticky {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+//@include animate; anywhere for animation
+@mixin animate {
+  transition: all 1.15s ease-in-out;
+}
+
+@mixin custom-scroll {
+  &::-webkit-scrollbar {
+      width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+      background-color:rgba(255,255,255,.05);
+      border-radius: 0 0 2px 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color:rgba(0,0,0,.25);
+      margin-right:2px;
+  }
+}
+
+//resetting body for a cleaner setup
+body * {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+//always animate FontAwesome icons
+.fa {
+  @include animate();
+}
+
+////////////////////////////////////////////////////////
+
+
+.menu-list a.is-active {
+  background-color: $aggieblue-dark;
+  color: $white;
 }
 
 
-.wrap {
-	width: 100%;
-	position: absolute;
-	top: 50%;
-}
-.spinner-wrap {
-	margin: auto;
-	position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
-.spinner {
-	
-	height: 100px;
-	width: 100px;
-	display: inline-block;
-	margin: -50px auto 0;
-	animation: spin 1s steps(12, end) infinite;
-	
-	&:first-child {
-		margin-right: 50px;
-	}
-	
-	i {
-		height: 30px;
-		width: 6px;
-		margin-left: -3px;
-		display: block;
-		transition: height 1s;
-		position: absolute;
-		left: 50%;
-		transform-origin: center 50px;
-		background: #fff;
-		box-shadow: 0 0 3px rgba(255, 255, 255, .7);
-		border-radius: 3px;
-	}
-	
-	&:nth-child(2) i {
-		height: 6px;
-	}
-	&:hover {
-		i {
-			height: 6px;		
-		}
-		
-		&:nth-child(2) i {
-			height: 30px;
-		}
-	}
+//////////////////////////////////////////////////////////
+
+
+.main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: $clouds;
+  
+  display: flex;
 }
 
-.spinner i:nth-child(1) { opacity:.08 }
-.spinner i:nth-child(2) { transform:rotate(30deg);opacity:.167 }
-.spinner i:nth-child(3) { transform:rotate(60deg);opacity:.25 }
-.spinner i:nth-child(4) { transform:rotate(90deg);opacity:.33 }
-.spinner i:nth-child(5) { transform:rotate(120deg);opacity:.4167 }
-.spinner i:nth-child(6) { transform:rotate(150deg);opacity:.5 }
-.spinner i:nth-child(7) { transform:rotate(180deg);opacity:.583 }
-.spinner i:nth-child(8) { transform:rotate(210deg);opacity:.67 }
-.spinner i:nth-child(9) { transform:rotate(240deg);opacity:.75 }
-.spinner i:nth-child(10) { transform:rotate(270deg);opacity:.833 }
-.spinner i:nth-child(11) { transform:rotate(300deg);opacity:.9167 }
-.spinner i:nth-child(12) { transform:rotate(330deg);opacity:1 }
+.__content {
+  padding: 3rem 6rem;
+  display:flex;
+  flex-grow: 1;
+  
+  .card {
+    flex-grow: 1;
+    box-shadow: $shadow-2;
 
-@keyframes spin {
-	from { transform: rotate(0deg); }
-	to { transform: rotate(360deg); }
+    .level.card-header {
+      background: $aggiesilver;
+      color: $clouds;
+      padding: 1rem;
+    }
+  }
+}
+
+
+///////////////////////////////////////
+
+
+.scroll-within {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  @include custom-scroll;
+  
+  .table{
+    margin-bottom: 0;
+    
+    &.fixed-header thead tr {
+      cursor: default;
+      box-shadow: $shadow-1;
+      border-bottom: 0;
+
+      th {
+        border: none;
+        @include sticky;
+        background-color: $bulma-black;
+        color: $clouds;
+      }
+    }
+  }
+  
 }
