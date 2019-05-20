@@ -1,4 +1,3 @@
-
 Country.destroy_all
 Country.create([
 

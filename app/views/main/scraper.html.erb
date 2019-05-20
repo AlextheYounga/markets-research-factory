@@ -1,27 +1,36 @@
 
 <table class="container">
 		<tr>
-			<th></th>
-			  <th>Inflation Rate</th>
-			  <th>Corporate Tax Rate</th>
-			  <th>Interest Rate</th>
-			  <th>Unemployment Rate</th>
-			  <th>Personal Income Tax</th>
-			  <th>GDP per Capita</th>
-			  <th>Government <br>Debt to GDP</th>
-			  <th>Banks<br>Balance Sheet</th>
-			  <th>Central Bank<br>Balance Sheet</th>
-			  <th>Government<br>Budget</th>
+			<th>Country Name</th>
+			<th>Inflation Rate</th>
+			<th>Corporate Tax Rate</th>
+			<th>Interest Rate</th>
+			<th>Unemployment Rate</th>
+			<th>Personal Income Tax</th>
+			<th>GDP per Capita</th>
+			<th>Government <br>Debt to GDP</th>
+			<th>Banks<br>Balance Sheet</th>
+			<th>Central Bank<br>Balance Sheet</th>
+			<th>Government<br>Budget</th>
 		</tr>
 		<% @countries.each do |country| %>
 		<tr>
 			<td><%= country.print_name %></td>
-			<% @actual.each_slice(10) do |actual| %>
-			<td><%= actual %></td>
-			<% end %>
+			<td><%= country.inflation %></td>
+			<td><%= country.corporate_tax %></td>
+			<td><%= country.interest_rate %></td>
+			<td><%= country.unemployment %></td>
+			<td><%= country.income_tax %></td>
+			<td><%= country.gdp %></td>
+			<td><%= country.gov_debt_to_gdp %></td>
+			<td><%= country.bank_balance_sheet %></td>
+			<td><%= country.central_bank %></td>
+			<td><%= country.budget %></td>
 		</tr>
 		<% end %>
 	</table>
+
+	
 
 
 

@@ -10,15 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_012138) do
+ActiveRecord::Schema.define(version: 2019_05_20_002257) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "print_name"
-  end
-
-  create_table "urls", force: :cascade do |t|
-    t.string "slug"
+    t.string "inflation"
+    t.string "corporate_tax"
+    t.string "interest_rate"
+    t.string "unemployment"
+    t.string "income_tax"
+    t.string "gdp"
+    t.string "gov_debt_to_gdp"
+    t.string "bank_balance_sheet"
+    t.string "central_bank"
+    t.string "budget"
   end
 
 end
