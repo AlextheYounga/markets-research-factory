@@ -1,5 +1,6 @@
 require 'httparty'
 require 'nokogiri'
+require 'resolv-replace'
 
 namespace :app do
   desc "Scrape TradingEconomics for indicators"
