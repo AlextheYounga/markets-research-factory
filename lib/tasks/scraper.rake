@@ -14,10 +14,8 @@ namespace :app do
 
         countries.each do |country|
             inflation_page = Nokogiri::HTML(HTTParty.get("https://tradingeconomics.com/#{country.name}/inflation-cpi"))
-            Country.update()
             puts "got #{country.name} inflation data"
             sleep(num_sec)
-            
             corporate_tax_page = Nokogiri::HTML(HTTParty.get("https://tradingeconomics.com/#{country.name}/corporate-tax-rate"))
             puts "got #{country.name} corporate tax rate data"
             sleep(num_sec)
