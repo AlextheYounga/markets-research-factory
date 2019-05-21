@@ -26,7 +26,7 @@ function generateExcel() {
 
     var a = document.createElement('a');
     a.href = data_type + ', ' + table_html;
-    a.download = 'Example_Table_To_Excel.xls';
+    a.download = 'TradingEconomicsData.xls';
     a.click();
 }
 
