@@ -1,44 +1,40 @@
-<div class="main">
-	<div class="__content">
-		<div class="card">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.37/jspdf.plugin.autotable.js"></script>
 
-			<div class="scroll-within">
-				<table class="table is-hoverable is-bordered is-striped is-fullwidth fixed-header" cellpadding="15">
-					<thead>
-						<tr>
-							<th>Country Name</th>
-							<th>Inflation Rate</th>
-							<th>Corporate Tax Rate</th>
-							<th>Interest Rate</th>
-							<th>Unemployment Rate</th>
-							<th>Personal Income Tax</th>
-							<th>GDP per Capita</th>
-							<th>Government <br>Debt to GDP</th>
-							<th>Banks<br>Balance Sheet</th>
-							<th>Central Bank<br>Balance Sheet</th>
-							<th>Government<br>Budget</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% @countries.each do |country| %>
-						<tr>
-							<td><%= country.print_name %></td>
-							<td><%= country.inflation %></td>
-							<td><%= country.corporate_tax %></td>
-							<td><%= country.interest_rate %></td>
-							<td><%= country.unemployment %></td>
-							<td><%= country.income_tax %></td>
-							<td><%= country.gdp %></td>
-							<td><%= country.gov_debt_to_gdp %></td>
-							<td><%= country.bank_balance_sheet %></td>
-							<td><%= country.central_bank %></td>
-							<td><%= country.budget %></td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-			</div>
-
-		</div>
-	</div>
+<div class="center-flex">
+	<button class="margin-1" onclick="generateExcel()">Export to Excel</button>
+	<button class="margin-1" onclick="generatePDF()">Export to PDF</button>
 </div>
+
+<table id="table_with_data">
+	<tbody>
+		<tr class="header">
+			<th>Country Name</th>
+			<th>Inflation Rate</th>
+			<th>Corporate Tax Rate</th>
+			<th>Interest Rate</th>
+			<th>Unemployment Rate</th>
+			<th>Personal Income Tax</th>
+			<th>GDP per Capita</th>
+			<th>Government <br>Debt to GDP</th>
+			<th>Banks<br>Balance Sheet</th>
+			<th>Central Bank<br>Balance Sheet</th>
+			<th>Government<br>Budget</th>
+		</tr>
+		<% @countries.each do |country| %>
+		<tr>
+			<td><%= country.print_name %></td>
+			<td><%= country.inflation %></td>
+			<td><%= country.corporate_tax %></td>
+			<td><%= country.interest_rate %></td>
+			<td><%= country.unemployment %></td>
+			<td><%= country.income_tax %></td>
+			<td><%= country.gdp %></td>
+			<td><%= country.gov_debt_to_gdp %></td>
+			<td><%= country.bank_balance_sheet %></td>
+			<td><%= country.central_bank %></td>
+			<td><%= country.budget %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

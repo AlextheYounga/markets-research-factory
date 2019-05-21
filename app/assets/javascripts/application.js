@@ -17,5 +17,34 @@
 //= require_tree .
 
 
-//paste this code under the head tag or in a separate js file.
-	// Wait for window load
+//export table to excel
+function generateExcel() {
+    //getting data from our table
+    var data_type = 'data:application/vnd.ms-excel';
+    var table_div = document.getElementById('table_with_data');
+    var table_html = table_div.outerHTML.replace(/ /g, '%20');
+
+    var a = document.createElement('a');
+    a.href = data_type + ', ' + table_html;
+    a.download = 'Example_Table_To_Excel.xls';
+    a.click();
+}
+
+
+//export table to pdf
+function generatePDF() {
+  var doc = new jsPDF('l', 'pt');
+
+  var elem = document.getElementById('table_with_data');
+  var data = doc.autoTableHtmlToJson(elem);
+  doc.autoTable(data.columns, data.rows, {
+    margin: {left: 35},
+    theme: 'grid',
+    tableWidth: 'auto',
+    fontSize: 8,
+    overflow: 'linebreak',
+    }
+  );
+    
+  doc.save('Example_Table_To_PDF.pdf');
+}
