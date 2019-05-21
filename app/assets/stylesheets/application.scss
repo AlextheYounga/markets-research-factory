@@ -15,190 +15,189 @@
  */
 
 h1 {
- margin: 5rem auto 1rem auto;
- display: block;
- text-align: center;
+    margin: 5rem auto 1rem auto;
+    display: block;
+    text-align: center;
 }
 
 a {
-  text-decoration: none;
-  button{
-    color: #800020;
-    background-color: #fff;
-    border-color: #621b18;
-    border-radius: .25rem;
-    border-width: 1px;
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
     text-decoration: none;
-    width: 12rem; 
 
-    &:hover {
-        background-color: #3b0d0c;
-        color: #fcebea;
+    button {
+        color: #800020;
+        background-color: #fff;
+        border-color: #621b18;
+        border-radius: .25rem;
+        border-width: 1px;
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+        box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+        text-decoration: none;
+        width: 12rem;
+
+        &:hover {
+            background-color: #3b0d0c;
+            color: #fcebea;
+        }
     }
-  }
 }
-
 
 $white: #fff;
 
 // flatUI colors
-$midnight:    #2c3e50;
-$asphalt:     #34495e;
+$midnight: #2c3e50;
+$asphalt: #34495e;
 $bulma-black: #4a4a4a;
-$asbestos:    #7f8c8d;
-$contrete:    #95a5a6;
-$silver:      #bdc3c7;
-$clouds:      #ecf0f1;
-$emerald:     #2ecc71;
-$nephritis:   #27ae60;
-$turquoise:   #1abc9c;
-$greensea:    #16a085;
-$amethyst:    #9b59b6;
-$wisteria:    #8e44ad;
-$sunflower:   #f1c40f;
-$orange:      #f39c12;
-$carrot:      #e67e22;
-$pumpkin:     #d35400;
-$alizarin:    #e74c3c;
+$asbestos: #7f8c8d;
+$contrete: #95a5a6;
+$silver: #bdc3c7;
+$clouds: #ecf0f1;
+$emerald: #2ecc71;
+$nephritis: #27ae60;
+$turquoise: #1abc9c;
+$greensea: #16a085;
+$amethyst: #9b59b6;
+$wisteria: #8e44ad;
+$sunflower: #f1c40f;
+$orange: #f39c12;
+$carrot: #e67e22;
+$pumpkin: #d35400;
+$alizarin: #e74c3c;
 $pomegranate: #c0392b;
-$river:       #3498db;
-$belize:      #2980b9;
+$river: #3498db;
+$belize: #2980b9;
 
 // aggie colors
-$aggieblue:        #036;
-$aggiesilver:      #a4aeb5;
-$aggieblue-dark:   #0f2439;
-$aggieblue-faded:  #2e4676;
-$aggieblue-light:  #2472b5;
+$aggieblue: #036;
+$aggiesilver: #a4aeb5;
+$aggieblue-dark: #0f2439;
+$aggieblue-faded: #2e4676;
+$aggieblue-light: #2472b5;
 
 //bulma overrides
-$primary:             $aggieblue-dark;
-$primary-faded:       $aggieblue-faded;
-$primary-transparent: transparentize($primary, .9);
+$primary: $aggieblue-dark;
+$primary-faded: $aggieblue-faded;
+$primary-transparent: transparentize($primary, 0.9);
 
 //MDL box-shadows
-$shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-$shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-$shadow-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-$shadow-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-$shadow-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+$shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$shadow-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+$shadow-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+$shadow-5: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
 //testing color
-$test-color: transparentize($wisteria, .9);
+$test-color: transparentize($wisteria, 0.9);
 
 @mixin sticky {
-  position: sticky;
-  top: 0;
-  z-index: 3;
+    position: sticky;
+    top: 0;
+    z-index: 3;
 }
 
 //@include animate; anywhere for animation
 @mixin animate {
-  transition: all 1.15s ease-in-out;
+    transition: all 1.15s ease-in-out;
 }
 
 @mixin custom-scroll {
-  &::-webkit-scrollbar {
-      width: 8px;
-  }
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
 
-  &::-webkit-scrollbar-track {
-      background-color:rgba(255,255,255,.05);
-      border-radius: 0 0 2px 0;
-  }
+    &::-webkit-scrollbar-track {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 0 0 2px 0;
+    }
 
-  &::-webkit-scrollbar-thumb {
-      border-radius: 2px;
-      background-color:rgba(0,0,0,.25);
-      margin-right:2px;
-  }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: rgba(0, 0, 0, 0.25);
+        margin-right: 2px;
+    }
 }
 
 //resetting body for a cleaner setup
 body * {
-  font-family: 'Montserrat', sans-serif;
-  box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
 }
 
 //always animate FontAwesome icons
 .fa {
-  @include animate();
+    @include animate;
 }
 
 ////////////////////////////////////////////////////////
 
-
 .menu-list a.is-active {
-  background-color: $aggieblue-dark;
-  color: $white;
+    background-color: $aggieblue-dark;
+    color: $white;
 }
-
-
 
 //////////////////////////////////////////////////////////
 
-
 .main {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: $clouds;
-  
-  display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $clouds;
+    display: flex;
 }
 
 .__content {
-  padding: 3rem 6rem;
-  display:flex;
-  flex-grow: 1;
-  
-  .card {
+    padding: 3rem 6rem;
+    display: flex;
     flex-grow: 1;
-    box-shadow: $shadow-2;
 
-    .level.card-header {
-      background: $aggiesilver;
-      color: $clouds;
-      padding: 1rem;
+    .card {
+        flex-grow: 1;
+        box-shadow: $shadow-2;
+
+        .level.card-header {
+            background: $aggiesilver;
+            color: $clouds;
+            padding: 1rem;
+        }
     }
-  }
 }
-
 
 ///////////////////////////////////////
 
-
 .scroll-within {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  @include custom-scroll;
-  
-  .table{
-    margin-bottom: 0;
-    
-    &.fixed-header thead tr {
-      cursor: default;
-      box-shadow: $shadow-1;
-      border-bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
 
-      th {
-        border: none;
-        @include sticky;
-        background-color: $bulma-black;
-        color: $clouds;
-      }
+    @include custom-scroll;
+
+    .table {
+        margin-bottom: 0;
+
+        &.fixed-header thead tr {
+            cursor: default;
+            box-shadow: $shadow-1;
+            border-bottom: 0;
+
+            th {
+                border: none;
+
+                @include sticky;
+
+                background-color: $bulma-black;
+                color: $clouds;
+            }
+        }
     }
-  }
-  
+}
+
+tr {
+    background-color: white;
 }
