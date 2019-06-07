@@ -3,8 +3,8 @@ require 'nokogiri'
 require 'resolv-replace'
 
 namespace :app do
-  desc "Scrape TradingEconomics for indicators"
-  task :scrape => :environment do
+  desc "Scrape TradingEconomics for country indicators"
+  task :scrape_countries => :environment do
 
         num_sec = 1
         
