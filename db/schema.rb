@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_002257) do
+ActiveRecord::Schema.define(version: 2019_06_07_055020) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,25 @@ ActiveRecord::Schema.define(version: 2019_05_20_002257) do
     t.string "bank_balance_sheet"
     t.string "central_bank"
     t.string "budget"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "symbol"
+    t.string "company_name"
+    t.decimal "latest_price"
+    t.decimal "gross_profit"
+    t.decimal "net_income"
+    t.decimal "total_assets"
+    t.decimal "total_liabilities"
+    t.decimal "total_debt"
+    t.decimal "pe_ratio"
+    t.datetime "latest_time"
+    t.datetime "latest_update"
+    t.string "period"
+    t.string "report_date"
+    t.string "industry"
+    t.string "description"
+    t.string "primary_exchange"
   end
 
 end
