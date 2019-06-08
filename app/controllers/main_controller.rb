@@ -7,7 +7,7 @@ class MainController < ApplicationController
     def home
     end
 
-    def scraper
+    def country_scraper
         @countries = Country.all
         # urls = Url.all
     end
