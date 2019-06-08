@@ -1,0 +1,27 @@
+<div class="center-flex">
+	<button class="margin-1" onclick="generateExcel()">Export to Excel</button>
+	<button class="margin-1" onclick="generatePDF()">Export to PDF</button>
+</div>
+
+<table id="table_with_data">
+	<tbody>
+		<tr class="header">
+			<th>Company Name</th>
+			<th>Symbol</th>
+            <th>Price</th>
+            <th>P/E Ratio</th>
+            <th>Latest Time</th>
+		</tr>
+		<% @stocks.each do |stock| %>
+		<tr>
+			<td><%= stock.company_name %></td>
+			<td><%= stock.symbol %></td>
+			<td><%= stock.latest_price %></td>
+			<td><%= stock.pe_ratio %></td>
+			<td><%= stock.latest_time %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+

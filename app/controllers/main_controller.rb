@@ -9,7 +9,10 @@ class MainController < ApplicationController
 
     def country_scraper
         @countries = Country.all
-        # urls = Url.all
+    end
+
+    def russell_scraper
+        @stocks = Stock.all
     end
 
 end
