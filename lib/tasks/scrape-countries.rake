@@ -9,10 +9,6 @@ namespace :app do
         num_sec = 1
         
         start = Time.now
-        unless Stock
-            Rake::Task["db:seed"].invoke
-        end
-        puts "CountriesTable reseeded to clear database"
 
         Country.all.each do |country|
             inflation_page = Nokogiri::HTML(HTTParty.get("https://tradingeconomics.com/#{country.name}/inflation-cpi"))

@@ -8,20 +8,33 @@
 		<tr class="header">
 			<th>Company Name</th>
 			<th>Symbol</th>
-            <th>Price</th>
+			<th>Price</th>
+			<th>Net Income</th>
+			<th>Total Assets</th>
+			<th>Total Liabilities</th>
+			<th>Total Debt</th>
+			<th>Gross Profit</th>
             <th>P/E Ratio</th>
-            <th>Latest Time</th>
+			<th>Description</th>
+			<th>Industry</th>
+			<th>Primary Exchange</th>
 		</tr>
 		<% @stocks.each do |stock| %>
 		<tr>
 			<td><%= stock.company_name %></td>
 			<td><%= stock.symbol %></td>
 			<td><%= stock.latest_price %></td>
+			<td><%= stock.net_income %></td>
+			<td><%= stock.total_assets %></td>
+			<td><%= stock.total_liabilities %></td>
+			<td><%= stock.total_debt %></td>
+			<td><%= stock.gross_profit %></td>
 			<td><%= stock.pe_ratio %></td>
-			<td><%= stock.latest_time %></td>
+			<td><%= stock.description %></td>
+			<td><%= stock.industry %></td>
+			<td><%= stock.primary_exchange %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-
 
