@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   root 'main#home'
   get '/country-scraper' => 'main#country_scraper'
-  get '/russell-scraper' => 'main#russell_scraper'
+  get '/stock-scraper' => 'main#stock_scraper'
 end

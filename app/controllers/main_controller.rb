@@ -11,7 +11,7 @@ class MainController < ApplicationController
         @countries = Country.all
     end
 
-    def russell_scraper
+    def stock_scraper
         @stocks = Stock.all   
     end
 

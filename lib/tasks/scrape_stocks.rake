@@ -6,7 +6,7 @@ require 'json'
 
 namespace :app do
   desc "Scrape all companies on the Russell 3000 for financial data"
-  task :scrape_russell3000 => :environment do
+  task :scrape_stocks => :environment do
 
     start = Time.now
 
