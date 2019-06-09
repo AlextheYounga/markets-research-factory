@@ -19,7 +19,7 @@
 
 //export table to excel
 function generateExcel() {
-    //getting data from our table
+    // getting data from our table
     var data_type = 'data:application/vnd.ms-excel';
     var table_div = document.getElementById('table_with_data');
     var table_html = table_div.outerHTML.replace(/ /g, '%20');
@@ -29,4 +29,3 @@ function generateExcel() {
     a.download = 'TradingData.xls';
     a.click();
 }
-

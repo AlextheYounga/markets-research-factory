@@ -17,11 +17,11 @@ namespace :app do
         b = company.sum("total_debt") unless company.sum("total_assets") == 0
     
         next if a.nil? || b.nil?
-        c = (b / a) * 100
+        c = ((b / a) * 100).to_f
  
 
         Stock.where(symbol: "#{stock.symbol}").update(
-            debt_to_assets: c > 0 ? (sprintf "%.2f", c) : nil
+            debt_to_assets: c > 0 ? (sprintf "%d%%", c) : nil
         )
 
         Stock.where(debt_to_assets: 0).update(

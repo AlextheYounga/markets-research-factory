@@ -27,6 +27,9 @@ gem 'httparty'
 gem 'hirb'
 gem 'stock_quote', '~> 2.0.0'
 gem 'json'
+# gem 'rubyzip'
+# gem 'axlsx'
+# gem 'axlsx_rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
