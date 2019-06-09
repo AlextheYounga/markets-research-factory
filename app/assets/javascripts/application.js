@@ -26,25 +26,7 @@ function generateExcel() {
 
     var a = document.createElement('a');
     a.href = data_type + ', ' + table_html;
-    a.download = 'TradingEconomicsData.xls';
+    a.download = 'TradingData.xls';
     a.click();
 }
 
-
-//export table to pdf
-function generatePDF() {
-  var doc = new jsPDF('l', 'pt');
-
-  var elem = document.getElementById('table_with_data');
-  var data = doc.autoTableHtmlToJson(elem);
-  doc.autoTable(data.columns, data.rows, {
-    margin: {left: 35},
-    theme: 'grid',
-    tableWidth: 'auto',
-    fontSize: 8,
-    overflow: 'linebreak',
-    }
-  );
-    
-  doc.save('Example_Table_To_PDF.pdf');
-}

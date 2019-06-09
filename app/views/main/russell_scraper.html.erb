@@ -1,6 +1,6 @@
-<div class="center-flex">
+<div class="center-between">
+	<a href="<%=root_path%>"><button class="margin-1">Home</button></a>
 	<button class="margin-1" onclick="generateExcel()">Export to Excel</button>
-	<button class="margin-1" onclick="generatePDF()">Export to PDF</button>
 </div>
 
 <table id="table_with_data">
@@ -26,13 +26,13 @@
 			<td><%= stock.company_name %></td>
 			<td><%= stock.symbol %></td>
 			<td><%= stock.latest_price %></td>
-			<td><%= stock.moving_average %>%</td>
-			<td><%= stock.net_income %></td>
-			<td><%= stock.total_assets %></td>
-			<td><%= stock.total_liabilities %></td>
-			<td><%= stock.total_debt %></td>
-			<td><%= stock.debt_to_assets %>%</td>
-			<td><%= stock.gross_profit %></td>
+			<td><%= stock.moving_average ? (sprintf "%d%%", stock.moving_average) : nil %></td>
+			<td><%= stock.net_income.to_i %></td>
+			<td><%= stock.total_assets.to_i  %></td>
+			<td><%= stock.total_liabilities.to_i  %></td>
+			<td><%= stock.total_debt.to_i  %></td>
+			<td><%= stock.debt_to_assets ? (sprintf "%d%%", stock.debt_to_assets) : nil %></td>
+			<td><%= stock.gross_profit.to_i  %></td>
 			<td><%= stock.pe_ratio %></td>
 			<td><%= stock.description %></td>
 			<td><%= stock.industry %></td>
@@ -41,4 +41,5 @@
 		<% end %>
 	</tbody>
 </table>
+
 
