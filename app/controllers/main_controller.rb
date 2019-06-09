@@ -12,7 +12,8 @@ class MainController < ApplicationController
     end
 
     def russell_scraper
-        @stocks = Stock.all
+        @stocks = Stock.all   
+
     end
 
 end
