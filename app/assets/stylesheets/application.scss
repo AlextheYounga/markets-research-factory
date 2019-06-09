@@ -35,6 +35,15 @@ a {
   justify-content: center;
 }
 
+.center-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+}
+
 .margin-1 {
   margin: 1rem;
 }

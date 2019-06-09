@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_07_055020) do
+ActiveRecord::Schema.define(version: 2019_06_09_054546) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_06_07_055020) do
     t.string "industry"
     t.string "description"
     t.string "primary_exchange"
+    t.decimal "moving_average"
   end
 
 end

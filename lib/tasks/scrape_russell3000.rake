@@ -17,11 +17,23 @@ namespace :app do
       
       next if company.nil? && company_quote.nil? && company_finance.nil?
 
+      a = company_finance.financials ? company_finance.financials[0]["netIncome"].to_f : nil
+      b = company_finance.financials ? company_finance.financials[1]["netIncome"].to_f : nil
+      c = company_finance.financials ? company_finance.financials[2]["netIncome"].to_f : nil
+      d = company_finance.financials ? company_finance.financials[3]["netIncome"].to_f : nil
+
+      e = (b - a) / (a) * 100 unless a.nil? || b.nil? 
+      f = (c - b) / (b) * 100 unless b.nil? || c.nil? 
+      g = (d - c) / (c) * 100 unless c.nil? || d.nil?
+
+      moving_average = (e + f + g) / 3 unless a.nil? || b.nil? || c.nil? || d.nil?
+
       Stock.where(symbol: "#{stock.symbol}").update(
         company_name: company.try(:company_name),
         latest_price: company_quote.try(:latest_price),
+        moving_average: moving_average ? (sprintf "%.2f", moving_average) : nil,
         gross_profit: company_finance.financials ? company_finance.financials[0]["grossProfit"] : nil,
-        net_income: company_finance.financials ? company_finance.financials[0]["netIncome"] : nil,
+        net_income: a,
         total_assets: company_finance.financials ? company_finance.financials[0]["totalAssets"] : nil,
         total_liabilities: company_finance.financials ? company_finance.financials[0]["totalLiabilities"] : nil,
         total_debt: company_finance.financials ? company_finance.financials[0]["totalDebt"] : nil,
