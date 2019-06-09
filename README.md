@@ -9,6 +9,9 @@ rake app:scrape_russell3000
 To calculate debt to assets for companies:
 rake app:debt_to_assets
 
+To calculate net worth for companies
+rake app:net_worth
+
 To clear each table
 rake db:seed:countries_table_seeder
 rake db:seed:russell3000_table_seeder

@@ -5,8 +5,8 @@ require 'stock_quote'
 require 'json'
 
 namespace :app do
-  desc "Calculate debt to asset ratio for each stock"
-  task :debt_to_assets => :environment do
+  desc "Calculate net worth for each stock"
+  task :net_worth => :environment do
 
     start = Time.now
 
@@ -14,22 +14,22 @@ namespace :app do
         company = Stock.where(symbol: "#{stock.symbol}")
     
         a = company.sum("total_assets") unless company.sum("total_assets") == 0
-        b = company.sum("total_debt") unless company.sum("total_debt") == 0
+        b = company.sum("total_liabilities") unless company.sum("total_liabilities") == 0
     
         next if a.nil? || b.nil?
 
-        c = ((b / a) * 100).to_f
+        c = (a - b)
  
 
         Stock.where(symbol: "#{stock.symbol}").update(
-            debt_to_assets: c > 0 ? (sprintf "%d%%", c) : nil
+            net_worth: c > 0 ? c.to_i : nil
         )
 
-        Stock.where(debt_to_assets: 0).update(
-            debt_to_assets: nil
+        Stock.where(net_worth: 0).update(
+            net_worth: nil
         )
     
-        puts "Calculated #{stock.symbol} debt to asset ratio"
+        puts "Calculated #{stock.symbol} net worth"
         end
 
     finish = Time.now

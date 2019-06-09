@@ -15,6 +15,7 @@
 			<th>Total Assets</th>
 			<th>Total Liabilities</th>
 			<th>Total Debt</th>
+			<th>Net Worth</th>
 			<th>Debt to Assets</th>
 			<th>Gross Profit</th>
             <th>P/E Ratio</th>
@@ -32,6 +33,7 @@
 			<td><%= stock.total_assets ? stock.total_assets.to_i : nil %></td>
 			<td><%= stock.total_liabilities ? stock.total_liabilities.to_i : nil  %></td>
 			<td><%= stock.total_debt ? stock.total_debt.to_i : nil %></td>
+			<td><%= stock.net_worth ? stock.net_worth.to_i : nil %></td>
 			<td><%= stock.debt_to_assets ? (sprintf "%d%%", stock.debt_to_assets) : nil %></td>
 			<td><%= stock.gross_profit ? stock.gross_profit.to_i : nil  %></td>
 			<td><%= stock.pe_ratio ? stock.pe_ratio : nil %></td>
