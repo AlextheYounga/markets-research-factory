@@ -2,6 +2,7 @@ require 'httparty'
 require 'nokogiri'
 require 'resolv-replace'
 require 'stock_quote'
+require 'iex-ruby-client'
 require 'json'
 
 namespace :app do

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
-
+gem 'dotenv-rails', groups: [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
@@ -26,6 +26,9 @@ gem 'nokogiri'
 gem 'httparty'
 gem 'hirb'
 gem 'stock_quote', '~> 2.0.0'
+gem 'iex-ruby-client'
+gem 'alphavantagerb'
+gem "attr_encrypted", "~> 3.1.0"
 gem 'json'
 # gem 'rubyzip'
 # gem 'axlsx'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_09_225516) do
+ActiveRecord::Schema.define(version: 2019_10_26_211316) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2019_06_09_225516) do
     t.string "bank_balance_sheet"
     t.string "central_bank"
     t.string "budget"
+  end
+
+  create_table "dailyquotes", force: :cascade do |t|
+    t.string "symbol"
+    t.string "company_name"
+    t.datetime "date"
+    t.json "data"
   end
 
   create_table "stocks", force: :cascade do |t|
