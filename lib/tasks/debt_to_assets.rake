@@ -9,6 +9,8 @@ namespace :app do
   desc "Calculate debt to asset ratio for each stock"
   task :debt_to_assets => :environment do
 
+    #Calculate company's debt to assets
+
     start = Time.now
 
     Stock.all.each do |stock|

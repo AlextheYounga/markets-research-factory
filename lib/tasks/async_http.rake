@@ -2,6 +2,12 @@ require "async"
 require "async/barrier"
 require "async/http/internet"
 task :async_http => :environment do
+
+  #This is a test for trying out async scrapers in Ruby.
+  #These are really dangerous and really should not be used.
+  #This thing scrapes faster than is healthy for any server, and I almost pissed off Google using this. 
+  #Just look, don't use.
+  
   start = Time.now
 
   Async do
