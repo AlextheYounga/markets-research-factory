@@ -50,6 +50,21 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    async (1.24.2)
+      console (~> 1.0)
+      nio4r (~> 2.3)
+      timers (~> 4.1)
+    async-http (0.50.2)
+      async (~> 1.23)
+      async-io (~> 1.27.0)
+      async-pool (~> 0.2)
+      protocol-http (~> 0.13.0)
+      protocol-http1 (~> 0.10.0)
+      protocol-http2 (~> 0.10.0)
+    async-io (1.27.3)
+      async (~> 1.14)
+    async-pool (0.2.0)
+      async (~> 1.8)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
     bindex (0.8.1)
@@ -77,6 +92,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
+    console (1.8.1)
     crass (1.0.5)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -147,6 +163,13 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    protocol-hpack (1.4.2)
+    protocol-http (0.13.1)
+    protocol-http1 (0.10.1)
+      protocol-http (~> 0.13)
+    protocol-http2 (0.10.4)
+      protocol-hpack (~> 1.4)
+      protocol-http (~> 0.2)
     public_suffix (4.0.1)
     puma (3.12.1)
     rack (2.0.7)
@@ -187,6 +210,7 @@ GEM
       netrc (~> 0.8)
     ruby_dep (1.5.0)
     rubyzip (2.0.0)
+    rufo (0.11.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -219,6 +243,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timers (4.3.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -245,6 +270,7 @@ PLATFORMS
 
 DEPENDENCIES
   alphavantagerb
+  async-http
   attr_encrypted (~> 3.1.0)
   bootsnap (>= 1.1.0)
   byebug
@@ -262,6 +288,7 @@ DEPENDENCIES
   nokogiri
   puma (~> 3.11)
   rails (~> 5.2.3)
+  rufo
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

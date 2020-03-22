@@ -30,6 +30,8 @@ gem 'iex-ruby-client'
 gem 'alphavantagerb'
 gem "attr_encrypted", "~> 3.1.0"
 gem 'json'
+gem 'async-http'
+gem 'rufo'
 # gem 'rubyzip'
 # gem 'axlsx'
 # gem 'axlsx_rails'
