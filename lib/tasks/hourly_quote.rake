@@ -17,7 +17,7 @@ end_date = Date.parse('2019-10-25')
 
 (start_date..end_date).each do |day|
     puts day
-    intraday = HTTParty.get("https://cloud.iexapis.com/v1/stock/AAPL/intraday-prices?token=#{Rails.application.credentials.iex_secret_key}&exactDate=#{day.strftime('%Y%m%d')}&chartInterval=60")
+    intraday = HTTParty.get("https://cloud.iexapis.com/v1/stock/AAPL/intraday-prices?token=#{Rails.application.credentials.iex_public_key}&exactDate=#{day.strftime('%Y%m%d')}&chartInterval=60")
     next if intraday.empty?
 
     price1 = intraday[0] != nil ? intraday[0]['average'] : nil
