@@ -32,6 +32,7 @@ gem "attr_encrypted", "~> 3.1.0"
 gem 'json'
 gem 'async-http'
 gem 'rufo'
+gem 'rename'
 # gem 'rubyzip'
 # gem 'axlsx'
 # gem 'axlsx_rails'
