@@ -4,9 +4,9 @@ require 'resolv-replace'
 require 'stock_quote'
 require 'json'
 
-namespace :app do
+namespace :stocks do
   desc "Scrape all companies on the Russell 3000 for financial data"
-  task :scrape_stocks => :environment do
+  task :collect => :environment do
 
     start = Time.now
 

@@ -4,9 +4,9 @@ require 'resolv-replace'
 require 'stock_quote'
 require 'json'
 
-namespace :app do
+namespace :stocks do
   desc "Scrape all companies on the Russell 3000 for financial data"
-  task :scrape_stocks_basics => :environment do
+  task :basics => :environment do
   StockQuote::Stock.new(api_key: Rails.application.credentials.iex_public_key)
 
     start = Time.now

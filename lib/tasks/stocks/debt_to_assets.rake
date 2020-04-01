@@ -2,11 +2,14 @@ require 'httparty'
 require 'nokogiri'
 require 'resolv-replace'
 require 'stock_quote'
+require 'iex-ruby-client'
 require 'json'
 
-namespace :app do
-  desc "Calculate net worth for each stock"
-  task :net_worth => :environment do
+namespace :stocks do
+  desc "Calculate debt to asset ratio for each stock"
+  task :debt_to_assets => :environment do
+
+    #Calculate company's debt to assets
 
     start = Time.now
 
@@ -14,22 +17,22 @@ namespace :app do
         company = Stock.where(symbol: "#{stock.symbol}")
     
         a = company.sum("total_assets") unless company.sum("total_assets") == 0
-        b = company.sum("total_liabilities") unless company.sum("total_liabilities") == 0
+        b = company.sum("total_debt") unless company.sum("total_debt") == 0
     
         next if a.nil? || b.nil?
 
-        c = (a - b)
+        c = ((b / a) * 100).to_f
  
 
         Stock.where(symbol: "#{stock.symbol}").update(
-            net_worth: c > 0 ? c.to_i : nil
+            debt_to_assets: c > 0 ? (sprintf "%d%%", c) : nil
         )
 
-        Stock.where(net_worth: 0).update(
-            net_worth: nil
+        Stock.where(debt_to_assets: 0).update(
+            debt_to_assets: nil
         )
     
-        puts "Calculated #{stock.symbol} net worth"
+        puts "Calculated #{stock.symbol} debt to asset ratio"
         end
 
     finish = Time.now
