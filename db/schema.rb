@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_26_211316) do
+ActiveRecord::Schema.define(version: 2020_04_02_055355) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
-    t.string "print_name"
+    t.string "parameter"
+    t.string "code"
     t.string "inflation"
     t.string "corporate_tax"
     t.string "interest_rate"
@@ -54,6 +55,12 @@ ActiveRecord::Schema.define(version: 2019_10_26_211316) do
     t.decimal "moving_average"
     t.decimal "debt_to_assets"
     t.decimal "net_worth"
+    t.decimal "ev_to_sales"
+    t.decimal "profit_margin"
+    t.decimal "enterprise_value_to_revenue"
+    t.decimal "price_to_sales"
+    t.decimal "ebitda"
+    t.decimal "revenue"
   end
 
 end

@@ -1,17 +1,14 @@
-class MainController < ApplicationController
+class ResearchController < ApplicationController
     require 'httparty'
     require 'nokogiri'
     require 'byebug'
     require 'enumerator'
 
-    def home
-    end
-
-    def country_scraper
+    def countries
         @countries = Country.all
     end
 
-    def stock_scraper
+    def stocks
         @stocks = Stock.all   
     end
 
