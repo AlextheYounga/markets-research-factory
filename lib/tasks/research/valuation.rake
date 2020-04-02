@@ -26,7 +26,7 @@ namespace :stocks do
       revenue = advanced_stats["revenue"]
 
       Stock.where(symbol: "#{stock.symbol}").update(
-        company_name: companyName.to_f,
+        company_name: companyName,
         latest_price: price.to_f,
         pe_ratio: peRatio.to_f,
         ebitda: ebitda.to_f,
