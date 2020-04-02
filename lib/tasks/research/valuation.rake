@@ -8,7 +8,6 @@ namespace :stocks do
   desc "Scrape all companies on the Russell 3000 for financial data"
   task :valuation => :environment do
     StockQuote::Stock.new(api_key: Rails.application.credentials.iex_hazlitt_key)
-    # url = "https://cloud.iexapis.com/v1/stock/#{stock.symbol}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"
 
     start = Time.now
     Stock.all.each do |stock|
