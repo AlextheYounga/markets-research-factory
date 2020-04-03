@@ -12,11 +12,14 @@ namespace :stocks do
 
     start = Time.now
     Stock.all.each do |stock|
-        ticker = stock.ticker.downcase
-        url = "https://cloud.iexapis.com/v1/stock/#{ticker}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"                
-        response = HTTParty.get(url, format: :plain)
 
-        if (response.code == 200 && response.body != "Unknown symbol")
+        # next if stock.id < 1987        
+
+        ticker = stock.ticker.downcase
+        url = "https://cloud.iexapis.com/v1/stock/#{ticker}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"
+                    
+        response = HTTParty.get(url, format: :plain)
+        if (response.code == 200 && response.body != "Unknown symbol" && response.body != "{}")
             advanced_stats = JSON.parse response, symbolize_names: true
 
             # Fetch latest price
