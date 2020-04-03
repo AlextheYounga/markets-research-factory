@@ -8,36 +8,48 @@ namespace :stocks do
   desc "Scrape all companies on the Russell 3000 for financial data"
   task :valuation => :environment do
     StockQuote::Stock.new(api_key: Rails.application.credentials.iex_hazlitt_key)
+    # test_url = "https://sandbox.iexapis.com/stable/stock/aapl/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_test_key}"
 
     start = Time.now
     Stock.all.each do |stock|
-      url = "https://cloud.iexapis.com/v1/stock/#{stock.symbol}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"
-      advanced_stats = JSON[open(url).read]
-      quote =  StockQuote::Stock.quote("#{stock.symbol}")
+        ticker = stock.ticker.downcase
+        url = "https://cloud.iexapis.com/v1/stock/#{ticker}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"                
+        response = HTTParty.get(url, format: :plain)
 
-      price = quote.try(:latest_price)
-      companyName = advanced_stats["companyName"]
-      peRatio = advanced_stats["peRatio"]
-      ebitda = advanced_stats["EBITDA"]
-      profitMargin = advanced_stats["profitMargin"]
-      enterpriseValueToRevenue = advanced_stats["enterpriseValueToRevenue"]
-      priceToSales = advanced_stats["priceToSales"]
-      grossProfit = advanced_stats["grossProfit"]
-      revenue = advanced_stats["revenue"]
+        if (response.code == 200 && response.body != "Unknown symbol")
+            advanced_stats = JSON.parse response, symbolize_names: true
 
-      Stock.where(symbol: "#{stock.symbol}").update(
-        company_name: companyName,
-        latest_price: price.to_f,
-        pe_ratio: peRatio.to_f,
-        ebitda: ebitda.to_f,
-        profit_margin: profitMargin.to_f,
-        enterprise_value_to_revenue: enterpriseValueToRevenue.to_f,
-        price_to_sales: priceToSales.to_f,
-        gross_profit: grossProfit.to_f,
-        revenue: revenue,
-      )
-      
-      puts "#{stock.symbol} - collected".green
+            # Fetch latest price
+            quote = StockQuote::Stock.quote(ticker)
+            price = quote.try(:latest_price)
+
+            Stock.where(ticker: "#{stock.ticker}").update(
+                company_name: advanced_stats[:companyName],
+                latest_price: price,
+                gross_profit: advanced_stats[:grossProfit],
+                marketcap: advanced_stats[:marketcap],
+                total_debt: advanced_stats[:currentDebt],
+                debt_to_equity: advanced_stats[:debtToEquity],
+                day50_moving_avg: advanced_stats[:day50MovingAvg],
+                day200_moving_avg: advanced_stats[:day200MovingAvg],
+                year5_changepercent: advanced_stats[:year5ChangePercent],
+                year2_changepercent: advanced_stats[:year2ChangePercent],
+                year1_changepercent: advanced_stats[:year1ChangePercent],
+                max_changepercent: advanced_stats[:maxChangePercent],
+                dividend_yield: advanced_stats[:dividendYield],
+                pe_ratio: advanced_stats[:peRatio],
+                revenue: advanced_stats[:revenue],
+                profit_margin: advanced_stats[:profitMargin],
+                enterprise_value: advanced_stats[:enterpriseValue],
+                ev_to_revenue: advanced_stats[:enterpriseValueToRevenue],
+                price_to_sales: advanced_stats[:priceToSales],
+                price_to_book: advanced_stats[:priceToBook],
+                ebitda: advanced_stats[:EBITDA],
+                put_call_ratio: advanced_stats[:putCallRatio],
+            )
+
+            puts "#{stock.ticker} - collected".green
+        end
     end
 
     finish = Time.now

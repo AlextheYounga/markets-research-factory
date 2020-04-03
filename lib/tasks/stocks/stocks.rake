@@ -11,9 +11,9 @@ namespace :stocks do
     start = Time.now
 
     Stock.all.each do |stock|
-      company = StockQuote::Stock.company("#{stock.symbol}")
-      company_quote =  StockQuote::Stock.quote("#{stock.symbol}")
-      company_finance =  StockQuote::Stock.financials("#{stock.symbol}")
+      company = StockQuote::Stock.company("#{stock.ticker}")
+      company_quote =  StockQuote::Stock.quote("#{stock.ticker}")
+      company_finance =  StockQuote::Stock.financials("#{stock.ticker}")
       
       next if company.nil? && company_quote.nil? && company_finance.nil?
 
@@ -28,7 +28,7 @@ namespace :stocks do
 
       moving_average = (e + f + g) / 3 unless a.nil? || b.nil? || c.nil? || d.nil?
 
-      Stock.where(symbol: "#{stock.symbol}").update(
+      Stock.where(ticker: "#{stock.ticker}").update(
         company_name: company.try(:company_name),
         latest_price: company_quote.try(:latest_price),
         moving_average: moving_average ? (sprintf "%.2f", moving_average) : nil,
@@ -44,7 +44,7 @@ namespace :stocks do
         latest_time: company.try(:latest_time)
         
       )
-      puts "#{stock.symbol} information collected"
+      puts "#{stock.ticker} information collected"
     end
 
     finish = Time.now

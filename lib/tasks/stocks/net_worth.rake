@@ -11,7 +11,7 @@ namespace :stocks do
     start = Time.now
 
     Stock.all.each do |stock|
-        company = Stock.where(symbol: "#{stock.symbol}")
+        company = Stock.where(ticker: "#{stock.ticker}")
     
         a = company.sum("total_assets") unless company.sum("total_assets") == 0
         b = company.sum("total_liabilities") unless company.sum("total_liabilities") == 0
@@ -21,7 +21,7 @@ namespace :stocks do
         c = (a - b)
  
 
-        Stock.where(symbol: "#{stock.symbol}").update(
+        Stock.where(ticker: "#{stock.ticker}").update(
             net_worth: c > 0 ? c.to_i : nil
         )
 
@@ -29,7 +29,7 @@ namespace :stocks do
             net_worth: nil
         )
     
-        puts "Calculated #{stock.symbol} net worth"
+        puts "Calculated #{stock.ticker} net worth"
         end
 
     finish = Time.now

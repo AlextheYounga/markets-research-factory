@@ -14,7 +14,7 @@ namespace :stocks do
     start = Time.now
 
     Stock.all.each do |stock|
-        company = Stock.where(symbol: "#{stock.symbol}")
+        company = Stock.where(ticker: "#{stock.ticker}")
     
         a = company.sum("total_assets") unless company.sum("total_assets") == 0
         b = company.sum("total_debt") unless company.sum("total_debt") == 0
@@ -24,7 +24,7 @@ namespace :stocks do
         c = ((b / a) * 100).to_f
  
 
-        Stock.where(symbol: "#{stock.symbol}").update(
+        Stock.where(ticker: "#{stock.ticker}").update(
             debt_to_assets: c > 0 ? (sprintf "%d%%", c) : nil
         )
 
@@ -32,7 +32,7 @@ namespace :stocks do
             debt_to_assets: nil
         )
     
-        puts "Calculated #{stock.symbol} debt to asset ratio"
+        puts "Calculated #{stock.ticker} debt to asset ratio"
         end
 
     finish = Time.now

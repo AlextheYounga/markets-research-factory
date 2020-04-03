@@ -2,14 +2,16 @@
 require "csv"
 
 Stock.destroy_all
+file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/stocks/NYSE.csv"
+stocks = CSV.parse(File.read(file, encoding: 'bom|utf-8'))
 
-stocks = CSV.read("/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/stocks/S&P500.csv")
 stocks.each do |stock|
-    Stock.create([            
-        company_name: stock.last,
-        symbol: stock.first,          
-    ]);
+    name = stock.last
+    ticker = stock.first
+
+    Stock.create([
+        company_name: name,
+        ticker: ticker,
+    ])
     puts "#{stock.last} saved".green
 end
-
-

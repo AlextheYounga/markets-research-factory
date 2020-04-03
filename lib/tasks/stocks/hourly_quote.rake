@@ -29,7 +29,7 @@ end_date = Date.parse('2019-10-25')
     price7 = intraday[6] != nil ? intraday[6]['average'] : nil
 
     Dailyquote.create(
-        symbol: "AAPL",
+        ticker: "AAPL",
         company_name: "Apple",
         date: day,
         data: {

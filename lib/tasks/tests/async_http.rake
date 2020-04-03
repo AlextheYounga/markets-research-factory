@@ -62,12 +62,12 @@ namespace :test do
       # Spawn an asynchronous task for each topic:
       Stock.all.each do |stock|
         barrier.async do
-          prices = internet.get "https://www.google.com/search?q=#{stock.symbol}+prices"
-          supply = internet.get "https://www.google.com/search?q=#{stock.symbol}+supply"
-          demand = internet.get "https://www.google.com/search?q=#{stock.symbol}+demand"
-          puts "Found #{stock.symbol}: #{prices.read.scan(stock.symbol).size} times."
-          puts "Found #{stock.symbol}: #{supply.read.scan(stock.symbol).size} times."
-          puts "Found #{stock.symbol}: #{demand.read.scan(stock.symbol).size} times."
+          prices = internet.get "https://www.google.com/search?q=#{stock.ticker}+prices"
+          supply = internet.get "https://www.google.com/search?q=#{stock.ticker}+supply"
+          demand = internet.get "https://www.google.com/search?q=#{stock.ticker}+demand"
+          puts "Found #{stock.ticker}: #{prices.read.scan(stock.ticker).size} times."
+          puts "Found #{stock.ticker}: #{supply.read.scan(stock.ticker).size} times."
+          puts "Found #{stock.ticker}: #{demand.read.scan(stock.ticker).size} times."
         end
       end
 

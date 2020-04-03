@@ -8,7 +8,7 @@
 	<tbody>
 		<tr class="header">
 			<th>Company Name</th>
-			<th>Symbol</th>
+			<th>ticker</th>
 			<th>Price</th>
 			<!-- <th>Moving Average 1yr</th>
 			<th>Net Income</th>
@@ -31,7 +31,7 @@
 		<% @stocks.each do |stock| %>
 		<tr>
 			<td><%= stock.company_name %></td>
-			<td><%= stock.symbol %></td>
+			<td><%= stock.ticker %></td>
 			<td><%= stock.latest_price %></td>
 			<!-- <td><#%#= #stock.moving_average ? (sprintf "%d%%", stock.moving_average) : nil %></td>
 			<td><#%#= #stock.net_income ? stock.net_income.to_i : nil %></td>
