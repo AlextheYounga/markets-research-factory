@@ -39,6 +39,7 @@ namespace :stocks do
                 year2_changepercent: advanced_stats[:year2ChangePercent],
                 year1_changepercent: advanced_stats[:year1ChangePercent],
                 max_changepercent: advanced_stats[:maxChangePercent],
+                week52high: advanced_stats[:week52high],
                 dividend_yield: advanced_stats[:dividendYield],
                 pe_ratio: advanced_stats[:peRatio],
                 revenue: advanced_stats[:revenue],

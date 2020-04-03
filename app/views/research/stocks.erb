@@ -7,52 +7,60 @@
 <table id="table_with_data">
 	<tbody>
 		<tr class="header">
-			<th>Company Name</th>
-			<th>ticker</th>
-			<th>Price</th>
-			<!-- <th>Moving Average 1yr</th>
-			<th>Net Income</th>
-			<th>Total Assets</th>
-			<th>Total Liabilities</th>
-			<th>Total Debt</th>
-			<th>Net Worth</th>
-			<th>Debt to Assets</th> -->
-			<th>Gross Profit</th>
-            <th>P/E Ratio</th>
-			<!-- <th>Description</th>
-			<th>Industry</th>
-			<th>Primary Exchange</th> -->
-			<th>Profit Margin</th>
-			<th>Price to Sales</th>
+			<th>Ticker</th>
+			<th>Company name</th>
+			<th>Latest price</th>
+			<th>Gross profit</th>
+			<th>Marketcap</th>
+			<th>Total debt</th>
+			<th>Debt to equity</th>
+			<th>Day50 moving avg</th>
+			<th>Day200 moving avg</th>
+			<th>Year5 changepercent</th>
+			<th>Year2 changepercent</th>
+			<th>Year1 changepercent</th>
+			<th>Max changepercent</th>
+			<th>Week52high</th>
+			<th>Dividend yield</th>
+			<th>Pe ratio</th>
 			<th>Revenue</th>
-			<th>EBITDA</th>
-			<th>EV to Revenue</th>
+			<th>Profit margin</th>
+			<th>Enterprise value</th>
+			<th>Ev to sales</th>
+			<th>Ev to revenue</th>
+			<th>Price to sales</th>
+			<th>Price to book</th>
+			<th>Ebitda</th>
+			<th>Put call ratio</th>
 		</tr>
 		<% @stocks.each do |stock| %>
 		<tr>
-			<td><%= stock.company_name %></td>
 			<td><%= stock.ticker %></td>
+			<td><%= stock.company_name %></td>
 			<td><%= stock.latest_price %></td>
-			<!-- <td><#%#= #stock.moving_average ? (sprintf "%d%%", stock.moving_average) : nil %></td>
-			<td><#%#= #stock.net_income ? stock.net_income.to_i : nil %></td>
-			<td><#%#= #stock.total_assets ? stock.total_assets.to_i : nil %></td>
-			<td><#%#= #stock.total_liabilities ? stock.total_liabilities.to_i : nil  %></td>
-			<td><#%#= #stock.total_debt ? stock.total_debt.to_i : nil %></td>
-			<td><#%#= #stock.net_worth ? stock.net_worth.to_i : nil %></td>
-			<td><#%#= #stock.debt_to_assets ? (sprintf "%d%%", stock.debt_to_assets) : nil %></td> -->
-			<td><%= stock.gross_profit ? stock.gross_profit.to_i : nil  %></td>
-			<td><%= stock.pe_ratio ? stock.pe_ratio : nil %></td>
-			<!-- <td><#%#= #stock.description %></td>
-			<td><#%#= #stock.industry %></td>
-			<td><#%#= #stock.primary_exchange %></td> -->
-			<td><%= stock.profit_margin ? stock.profit_margin : nil %></td>
-			<td><%= stock.price_to_sales ? stock.price_to_sales : nil %></td>			
-			<td><%= stock.revenue ? stock.revenue : nil %></td>
-			<td><%= stock.ebitda ? stock.ebitda : nil %></td>
-			<td><%= stock.enterprise_value_to_revenue ? stock.enterprise_value_to_revenue : nil %></td>
+			<td><%= stock.gross_profit %></td>
+			<td><%= stock.marketcap %></td>
+			<td><%= stock.total_debt %></td>
+			<td><%= stock.debt_to_equity %></td>
+			<td><%= stock.day50_moving_avg %></td>
+			<td><%= stock.day200_moving_avg %></td>
+			<td><%= stock.year5_changepercent %></td>
+			<td><%= stock.year2_changepercent %></td>
+			<td><%= stock.year1_changepercent %></td>
+			<td><%= stock.max_changepercent %></td>
+			<td><%= stock.week52high %></td>
+			<td><%= stock.dividend_yield %></td>
+			<td><%= stock.pe_ratio %></td>
+			<td><%= stock.revenue %></td>
+			<td><%= stock.profit_margin %></td>
+			<td><%= stock.enterprise_value %></td>
+			<td><%= stock.ev_to_sales %></td>
+			<td><%= stock.ev_to_revenue %></td>
+			<td><%= stock.price_to_sales %></td>
+			<td><%= stock.price_to_book %></td>
+			<td><%= stock.ebitda %></td>
+			<td><%= stock.put_call_ratio %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-
-

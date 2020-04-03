@@ -9,7 +9,7 @@ class ResearchController < ApplicationController
     end
 
     def stocks
-        @stocks = Stock.all   
+        @stocks = Stock.all
     end
 
 end
