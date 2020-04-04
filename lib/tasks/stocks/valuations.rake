@@ -24,7 +24,6 @@ namespace :stocks do
 
             # Fetch latest price
             quote = StockQuote::Stock.quote(ticker)
-            abort quote.inspect
             price = quote.try(:latest_price)
 
             Stock.where(ticker: "#{stock.ticker}").update(
