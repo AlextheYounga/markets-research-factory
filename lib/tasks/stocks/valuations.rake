@@ -6,8 +6,7 @@ require "json"
 
 namespace :stocks do
   desc "Scrape all companies on the Russell 3000 for financial data"
-  task :valuations => :environment do
-    StockQuote::Stock.new(api_key: Rails.application.credentials.iex_hazlitt_key)
+  task :valuations => :environment do    
     # test_url = "https://sandbox.iexapis.com/stable/stock/aapl/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_test_key}"
 
     start = Time.now
@@ -20,15 +19,9 @@ namespace :stocks do
                     
         response = HTTParty.get(url, format: :plain)
         if (response.code == 200 && response.body != "Unknown symbol" && response.body != "{}")
-            advanced_stats = JSON.parse response, symbolize_names: true
-
-            # Fetch latest price
-            quote = StockQuote::Stock.quote(ticker)
-            price = quote.try(:latest_price)
+            advanced_stats = JSON.parse response, symbolize_names: true            
 
             Stock.where(ticker: "#{stock.ticker}").update(
-                company_name: advanced_stats[:companyName],
-                latest_price: price,
                 gross_profit: advanced_stats[:grossProfit],
                 marketcap: advanced_stats[:marketcap],
                 total_debt: advanced_stats[:currentDebt],
