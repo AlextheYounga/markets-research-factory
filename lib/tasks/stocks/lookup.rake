@@ -6,7 +6,7 @@ require 'json'
 
 namespace :stocks do
   desc "Scrape all companies on the Russell 3000 for financial data"
-  task :basics => :environment do
+  task :lookup => :environment do
   StockQuote::Stock.new(api_key: Rails.application.credentials.iex_public_key)
 
     start = Time.now

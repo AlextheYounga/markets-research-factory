@@ -6,14 +6,14 @@ require "json"
 
 namespace :stocks do
   desc "Scrape all companies on the Russell 3000 for financial data"
-  task :valuation => :environment do
+  task :valuations => :environment do
     StockQuote::Stock.new(api_key: Rails.application.credentials.iex_hazlitt_key)
     # test_url = "https://sandbox.iexapis.com/stable/stock/aapl/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_test_key}"
 
     start = Time.now
     Stock.all.each do |stock|
 
-        # next if stock.id < 1987        
+        # next if stock.id < [insert id]      
 
         ticker = stock.ticker.downcase
         url = "https://cloud.iexapis.com/v1/stock/#{ticker}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"
@@ -24,6 +24,7 @@ namespace :stocks do
 
             # Fetch latest price
             quote = StockQuote::Stock.quote(ticker)
+            abort quote.inspect
             price = quote.try(:latest_price)
 
             Stock.where(ticker: "#{stock.ticker}").update(
@@ -51,7 +52,7 @@ namespace :stocks do
                 ebitda: advanced_stats[:EBITDA],
                 put_call_ratio: advanced_stats[:putCallRatio],
             )
-
+            abort
             puts "#{stock.ticker} - collected".green
         end
     end

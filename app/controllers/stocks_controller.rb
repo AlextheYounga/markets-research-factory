@@ -1,12 +1,8 @@
-class ResearchController < ApplicationController
+class StocksController < ApplicationController
     require 'httparty'
     require 'nokogiri'
     require 'byebug'
     require 'enumerator'
-
-    def countries
-        @countries = Country.all
-    end
 
     def stocks
         @stocks = Stock.all

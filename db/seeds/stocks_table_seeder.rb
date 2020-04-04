@@ -2,7 +2,7 @@
 require "csv"
 
 Stock.destroy_all
-file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/stocks/NYSE.csv"
+file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/stocks/S&P500.csv"
 stocks = CSV.parse(File.read(file, encoding: 'bom|utf-8'))
 
 stocks.each do |stock|
