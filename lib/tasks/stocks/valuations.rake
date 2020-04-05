@@ -12,10 +12,11 @@ namespace :stocks do
     start = Time.now
     Stock.all.each do |stock|
 
-        # next if stock.id < [insert id]      
+        next if stock.id < 1
 
         ticker = stock.ticker.downcase
         url = "https://cloud.iexapis.com/v1/stock/#{ticker}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"
+        abort url.inspect
                     
         response = HTTParty.get(url, format: :plain)
         if (response.code == 200 && response.body != "Unknown symbol" && response.body != "{}")
@@ -44,7 +45,6 @@ namespace :stocks do
                 ebitda: advanced_stats[:EBITDA],
                 put_call_ratio: advanced_stats[:putCallRatio],
             )
-            abort
             puts "#{stock.ticker} - collected".green
         end
     end

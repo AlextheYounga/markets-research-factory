@@ -1,4 +1,10 @@
 
+require 'httparty'
+require 'nokogiri'
+require 'resolv-replace'
+require 'stock_quote'
+require 'json'
+
 namespace :stocks do
     desc "Scrape all companies on the Russell 3000 for financial data"
     task :company => :environment do
@@ -9,14 +15,17 @@ namespace :stocks do
             ticker = stock.ticker.downcase
 
             company = StockQuote::Stock.company(ticker)
-            abort company.inspect
             quote = StockQuote::Stock.quote(ticker)
             price = quote.try(:latest_price)
 
             Stock.where(ticker: "#{stock.ticker}").update(
-                company_name: advanced_stats[:companyName],
+                company_name: company.try(:company_name),
                 latest_price: price,
-            )
+                description: company.try(:description),
+                industry: company.try(:industry),
+                primary_exchange: company.try(:exchange),
+            )        
+            puts "#{stock.ticker} - saved".green
         end
 
             finish = Time.now
