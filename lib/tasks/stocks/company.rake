@@ -12,6 +12,8 @@ namespace :stocks do
 
         start = Time.now
         Stock.all.each do |stock|
+            next if stock.id < 359 
+
             ticker = stock.ticker.downcase
 
             company = StockQuote::Stock.company(ticker)

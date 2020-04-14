@@ -11,17 +11,16 @@ namespace :stocks do
 
     start = Time.now
     STOCKS = [
-      'T',
-      'VZ',
-      'JNJ',
-      'KO',
-      'PEP',
-      'CVS',
-      'TGT',
-      'DEO',
-      'STZ',
-      'PG',
-      'HEINY',
+      'XLU',
+      'VNQ',
+      'XLP',
+      'XLK',
+      'AAPL', 
+      'AMZN',
+      'FB',
+      'GOOGL', 
+      'NFLX',
+      'TSLA',
     ]
 
     STOCKS.each do |stock|      
