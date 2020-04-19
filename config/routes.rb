@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'pages#home'
   get '/countries' => 'countries#countries'
   get '/stocks' => 'stocks#stocks'
+  get '/research/chart_generator' => 'research#chart_generator'
 end
