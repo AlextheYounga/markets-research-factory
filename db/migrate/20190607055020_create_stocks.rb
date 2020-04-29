@@ -14,9 +14,15 @@ class CreateStocks < ActiveRecord::Migration[5.2]
       t.decimal :debt_to_equity
       t.decimal :day50_moving_avg
       t.decimal :day200_moving_avg
-      t.decimal :year5_changepercent
-      t.decimal :year2_changepercent
-      t.decimal :year1_changepercent
+      t.decimal :day5_change_percent
+      t.decimal :day30_change_percent
+      t.decimal :month1_change_percent
+      t.decimal :month3_change_percent
+      t.decimal :month6_change_percent
+      t.decimal :ytd_change_percent
+      t.decimal :year1_change_percent
+      t.decimal :year2_change_percent
+      t.decimal :year5_change_percent
       t.decimal :max_changepercent
       t.decimal :week52high
       t.decimal :dividend_yield
