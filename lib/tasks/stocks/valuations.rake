@@ -6,47 +6,78 @@ require "json"
 
 namespace :stocks do
   desc "Scrape all companies on the Russell 3000 for financial data"
-  task :valuations => :environment do    
+  task :valuations => :environment do
     # test_url = "https://sandbox.iexapis.com/stable/stock/aapl/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_test_key}"
 
     start = Time.now
-    Stock.all.each do |stock|
+    input_file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/stocks/SP500.csv"
+    output_file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/lib/assets/Valuations.csv"
+    File.delete(output_file) if File.exist?(output_file)
 
-        next if stock.id < 1
+    stocks = CSV.parse(File.read(input_file, encoding: "bom|utf-8"))
 
-        ticker = stock.ticker.downcase
-        url = "https://cloud.iexapis.com/v1/stock/#{ticker}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"
-        abort url.inspect
-                    
-        response = HTTParty.get(url, format: :plain)
-        if (response.code == 200 && response.body != "Unknown symbol" && response.body != "{}")
-            advanced_stats = JSON.parse response, symbolize_names: true            
+    CSV.open(output_file, "wb") do |csv|
+      csv << [
+        "gross_profit",
+        "marketcap",
+        "total_debt",
+        "debt_to_equity",
+        "day50_moving_avg",
+        "day200_moving_avg",
+        "year5_changepercent",
+        "year2_changepercent",
+        "year1_changepercent",
+        "max_changepercent",
+        "week52high",
+        "dividend_yield",
+        "pe_ratio",
+        "revenue",
+        "profit_margin",
+        "enterprise_value",
+        "ev_to_revenue",
+        "price_to_sales",
+        "price_to_book",
+        "ebitda",
+        "put_call_ratio",
+      ]
 
-            Stock.where(ticker: "#{stock.ticker}").update(
-                gross_profit: advanced_stats[:grossProfit],
-                marketcap: advanced_stats[:marketcap],
-                total_debt: advanced_stats[:currentDebt],
-                debt_to_equity: advanced_stats[:debtToEquity],
-                day50_moving_avg: advanced_stats[:day50MovingAvg],
-                day200_moving_avg: advanced_stats[:day200MovingAvg],
-                year5_changepercent: advanced_stats[:year5ChangePercent],
-                year2_changepercent: advanced_stats[:year2ChangePercent],
-                year1_changepercent: advanced_stats[:year1ChangePercent],
-                max_changepercent: advanced_stats[:maxChangePercent],
-                week52high: advanced_stats[:week52high],
-                dividend_yield: advanced_stats[:dividendYield],
-                pe_ratio: advanced_stats[:peRatio],
-                revenue: advanced_stats[:revenue],
-                profit_margin: advanced_stats[:profitMargin],
-                enterprise_value: advanced_stats[:enterpriseValue],
-                ev_to_revenue: advanced_stats[:enterpriseValueToRevenue],
-                price_to_sales: advanced_stats[:priceToSales],
-                price_to_book: advanced_stats[:priceToBook],
-                ebitda: advanced_stats[:EBITDA],
-                put_call_ratio: advanced_stats[:putCallRatio],
-            )
-            puts "#{stock.ticker} - collected".green
+      stocks.each do |stock|
+        begin
+          url = "https://cloud.iexapis.com/v1/stock/#{stock}/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_key}"
+
+          response = HTTParty.get(url, format: :plain)
+          if (response.code == 200 && response.body != "Unknown symbol" && response.body != "{}")
+            advanced_stats = JSON.parse response, symbolize_names: true
+
+            csv << [
+                advanced_stats[:grossProfit],
+                advanced_stats[:marketcap],
+                advanced_stats[:currentDebt],
+                advanced_stats[:debtToEquity],
+                advanced_stats[:day50MovingAvg],
+                advanced_stats[:day200MovingAvg],
+                advanced_stats[:year5ChangePercent],
+                advanced_stats[:year2ChangePercent],
+                advanced_stats[:year1ChangePercent],
+                advanced_stats[:maxChangePercent],
+                advanced_stats[:week52high],
+                advanced_stats[:dividendYield],
+                advanced_stats[:peRatio],
+                advanced_stats[:revenue],
+                advanced_stats[:profitMargin],
+                advanced_stats[:enterpriseValue],
+                advanced_stats[:enterpriseValueToRevenue],
+                advanced_stats[:priceToSales],
+                advanced_stats[:priceToBook],
+                advanced_stats[:EBITDA],
+                advanced_stats[:putCallRatio],
+            ]
+            puts "#{stock} - collected".green
+          end
+        rescue => e
+            puts "#{stock} - Error - #{e}"
         end
+      end
     end
 
     finish = Time.now

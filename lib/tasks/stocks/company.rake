@@ -1,38 +1,55 @@
 
-require 'httparty'
-require 'nokogiri'
-require 'resolv-replace'
-require 'stock_quote'
-require 'json'
+require "httparty"
+require "nokogiri"
+require "resolv-replace"
+require "stock_quote"
+require "json"
 
 namespace :stocks do
-    desc "Scrape all companies on the Russell 3000 for financial data"
-    task :company => :environment do
-        StockQuote::Stock.new(api_key: Rails.application.credentials.iex_public_key)
+  desc "Lookup stock company information"
+  task :company => :environment do
+    StockQuote::Stock.new(api_key: Rails.application.credentials.iex_public_key)
 
-        start = Time.now
-        Stock.all.each do |stock|
-            next if stock.id < 359 
+    start = Time.now
+    STOCK = [
+      "SPXC",
+      "DIA",
+    ]
+    output_file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/lib/assets/Company.csv"
+    File.delete(output_file) if File.exist?(output_file)
 
-            ticker = stock.ticker.downcase
+    CSV.open(output_file, "wb") do |csv|
+        csv << [
+            "companyName",
+            "latestPrice",
+            "description",
+            "industry",
+            "primaryExchange",
+        ]
 
-            company = StockQuote::Stock.company(ticker)
-            quote = StockQuote::Stock.quote(ticker)
-            price = quote.try(:latest_price)
+        STOCK.each do |stock|
+            begin
+                company = StockQuote::Stock.company(stock)
+                quote = StockQuote::Stock.quote(stock)
+                price = quote.try(:latest_price)
 
-            Stock.where(ticker: "#{stock.ticker}").update(
-                company_name: company.try(:company_name),
-                latest_price: price,
-                description: company.try(:description),
-                industry: company.try(:industry),
-                primary_exchange: company.try(:exchange),
-            )        
-            puts "#{stock.ticker} - saved".green
+                csv << [
+                    company.try(:company_name),
+                    price,
+                    company.try(:description),
+                    company.try(:industry),
+                    company.try(:exchange),
+                ]
+                puts "#{stock} - saved".green
+            rescue => e
+                puts "#{stock} - Error - #{e}"
+            end
         end
-
-            finish = Time.now
-            diff = finish - start
-            puts "Done"
-            puts "Time Elapsed: #{diff}"
     end
+
+    finish = Time.now
+    diff = finish - start
+    puts "Done"
+    puts "Time Elapsed: #{diff}"
+  end
 end

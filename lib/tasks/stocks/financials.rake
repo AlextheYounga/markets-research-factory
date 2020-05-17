@@ -54,20 +54,3 @@ namespace :stocks do
   end
 end
 
-# financials = StockQuote::Stock.financials("#{ticker}")
-# cfUrl = "https://cloud.iexapis.com/v1/stock/#{ticker}/cash-flow?token=#{Rails.application.credentials.iex_hazlitt_key}"
-
-# shareholderEquity = financials.try(:financials["shareholderEquity"])
-# longTermDebt = financials.try(:financials["longTermDebt"])
-
-# price = quote.try(:latest_price)
-# keystats - sharesOutstanding
-# keystats - marketcap
-
-# company - country
-# indicator - volatility
-# financials - shareholderEquity
-# financials - longTermDebt
-# financials - totalRevenue
-
-# csv << ["Ticker" "Market Cap", "Country", "Revenue", "Free Cash Flow Yield", "LT Debt - Equity Ratio"]
