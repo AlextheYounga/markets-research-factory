@@ -11,10 +11,9 @@ namespace :stocks do
     start = Time.now
     StockQuote::Stock.new(api_key: Rails.application.credentials.iex_hazlitt_key)
 
-    file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/stocks/Miners.csv"
-    output_file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/lib/assets/minerAdvData.csv"
+    file = "#{Rails.root}/storage/stocks/Miners.csv"
+    output_file = "#{Rails.root}/lib/assets/minerAdvData.csv"
     File.delete(output_file) if File.exist?(output_file)
-    # cashflowURL = "https://sandbox.iexapis.com/stable/stock/#{ticker[0]}/cash-flow?token=#{Rails.application.credentials.iex_hazlitt_test_key}"
     tickers = CSV.parse(File.read(file, encoding: "bom|utf-8"))
 
     CSV.open(output_file, "wb") do |csv|

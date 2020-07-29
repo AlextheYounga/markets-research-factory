@@ -31,7 +31,7 @@ namespace :stocks do
     #   "TSLA",
     ]
 
-    output_file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/lib/assets/Lookup.csv"
+    output_file = "#{Rails.root}/lib/assets/Lookup.csv"
     File.delete(output_file) if File.exist?(output_file)
 
     CSV.open(output_file, "wb") do |csv|

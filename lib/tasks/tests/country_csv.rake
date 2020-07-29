@@ -10,7 +10,7 @@ namespace :test do
   task :country_csv => :environment do
 
     start = Time.now
-    countries = CSV.read("/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/Countries.csv")
+    countries = CSV.read("#{Rails.root}/storage/Countries.csv")
 
     countries.each do |country|
       puts "#{country.first}".green

@@ -3,7 +3,7 @@ require "colorize"
 
 Country.destroy_all
 
-file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/countries/Countries.csv"
+file = "#{Rails.root}/storage/countries/Countries.csv"
 countries = CSV.parse(File.read(file, encoding: 'bom|utf-8'))
 
 countries.each do |country|

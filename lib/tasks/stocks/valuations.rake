@@ -10,8 +10,8 @@ namespace :stocks do
     # test_url = "https://sandbox.iexapis.com/stable/stock/aapl/advanced-stats?token=#{Rails.application.credentials.iex_hazlitt_test_key}"
 
     start = Time.now
-    input_file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/storage/stocks/SP500.csv"
-    output_file = "/Users/alexyounger/Desktop/Development/Rails/markets-research-factory/lib/assets/Valuations.csv"
+    input_file = "#{Rails.root}/storage/stocks/SP500.csv"
+    output_file = "#{Rails.root}/lib/assets/Valuations.csv"
     File.delete(output_file) if File.exist?(output_file)
 
     stocks = CSV.parse(File.read(input_file, encoding: "bom|utf-8"))
